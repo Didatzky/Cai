@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRN Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input[type="text"], input[type="url"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LRN Login</h1>
+        <p>Please enter your LRN number:</p>
+        <input type="text" id="lrnInput" placeholder="Enter your LRN">
+        <button onclick="login()">Login</button>
+        <p id="errorMsg" class="error"></p>
+        <hr>
+        <h2>Add New LRN</h2>
+        <input type="text" id="newLrn" placeholder="New LRN">
+        <input type="url" id="newUrl" placeholder="New URL">
+        <button onclick="addNewLrn()">Add LRN</button>
+        <p id="addErrorMsg" class="error"></p>
+    </div>
+
+    <script>
+        // Predefined LRNs and their corresponding URLs
+        const lrnToUrl = {
+            "12345": "https://example.com/site1",
+            "67890": "https://example.com/site2",
+            "11223": "https://example.com/site3",
+            "44556": "https://example.com/site4",
+            "77889": "https://example.com/site5"
+        };
+
+        function login() {
+            const lrnInput = document.getElementById("lrnInput").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+
+            if (lrnToUrl[lrnInput]) {
+                // Redirect to the corresponding website
+                window.location.href = lrnToUrl[lrnInput];
+            } else {
+                // Display error message if LRN is not found
+                errorMsg.textContent = "Invalid LRN number. Please try again.";
+            }
+        }
+
+        function addNewLrn() {
+            const newLrn = document.getElementById("newLrn").value.trim();
+            const newUrl = document.getElementById("newUrl").value.trim();
+            const addErrorMsg = document.getElementById("addErrorMsg");
+
+            if (newLrn && newUrl) {
+                if (!lrnToUrl[newLrn]) {
+                    // Add the new LRN and URL to the list
+                    lrnToUrl[newLrn] = newUrl;
+                    addErrorMsg.textContent = "New LRN added successfully!";
+                    addErrorMsg.style.color = "green";
+                } else {
+                    addErrorMsg.textContent = "This LRN already exists.";
+                    addErrorMsg.style.color = "red";
+                }
+            } else {
+                addErrorMsg.textContent = "Please fill in both fields.";
+                addErrorMsg.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

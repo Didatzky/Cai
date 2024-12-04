@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRN Login</title>
+    <link rel="icon" type="x-icon" href="favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;background-image: url('Main.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+        .logout-button {
+            position: absolute;
+            top: 5px;
+            right: 13px;
+            text-decoration: none;
+            font-size: 14px;
+            background-color: #3700fd;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 10px;}
+        .container {
+            background: rgba(255, 255, 255, 0.527);
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 500px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin: 15px 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SF10</h1>
+        <input type="text" id="lrnInput" placeholder="Enter your LRN">
+        <button onclick="login()">Login</button>
+        <p id="errorMsg" class="error"></p>
+        <a class="logout-button" href="index.html">Log out</output></a>
+    </div>
+
+    <script>
+        function login() {
+            const lrnInput = document.getElementById("lrnInput").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+
+            // Dito yung lrn tapos link
+            const lrnToUrl = {
+                "12345": "SF10.html",
+                "123456789": "SF10-example",
+                "11111": "SF10-example2",
+                "00000": "SF10-example3",
+                "22222": "SF10-example4"
+            };
+
+            if (lrnToUrl[lrnInput]) {
+                // dito syya mag rerespond
+                window.location.href = lrnToUrl[lrnInput];
+            } else {
+                // ito din ay display ng error
+                errorMsg.textContent = "Invalid LRN number. Please try again.";
+            }
+        }
+    </script>
+</body>
+</html>
